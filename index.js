@@ -28,7 +28,7 @@ const errorHandler = (error, req, res, next) => {
 
 app.get('/info', (req, res) => {
   Person.find({}).then(persons => {
-    const date = new Date();
+    const date = new Date()
     res.send(`<p>Phonebook has info for ${persons.length} people</p>
               <p>${date}</p>`)
   })
@@ -60,7 +60,7 @@ app.delete('/api/persons/:id', (req, res, next) => {
 
 app.post('/api/persons', (req, res, next) => {
   const body = req.body
-  Person.find({}).then(persons => {
+  Person.find({}).then(() => {
     const person = new Person ({
       name: body.name,
       number: body.number
@@ -83,6 +83,6 @@ app.put('/api/persons/:id', (req, res, next) => {
 })
 
 app.use(errorHandler)
-  
-const port = process.env.PORT
-app.listen(port, () => console.log(`Server running on port ${port}`))
+
+const PORT = process.env.PORT
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
